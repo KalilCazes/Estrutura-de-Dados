@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//vertices
 typedef struct v{
     int rank;
     int valor;

@@ -50,17 +50,6 @@ int main(int argc, char** argv){
             int ascii_letter_new = (int) *(word);
             int ascii_letter_current = (int) *(current->word);
 
-            /*while(ascii_letter_new == ascii_letter_current && *(word) != '\0' && *(current->word) != '\0'){
-                j++;
-                word++;
-                current->word++;
-                ascii_letter_new =(int) *(word);
-                ascii_letter_current = (int) *(current->word);
-            }
-
-            word-=j;
-            current->word-=j;*/
-
             int comp = strcmp(word,current->word);
         
             if(comp == 0){

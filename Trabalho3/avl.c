@@ -22,8 +22,7 @@ void rotacao_direita(node* tree){
 
     if (new_root->up){
         int comp = strcmp(new_root->up->right->word, tree->word);
-        //printf("\nD: %s - E: %s : REAL: %s\n",new_root->up->right->word, new_root->up->left->word, tree->word);
-        if(comp == 0){
+       if(comp == 0){
             new_root->up->right = new_root;
         }else{
             new_root->up->left = new_root;
@@ -43,9 +42,7 @@ void rotacao_direita(node* tree){
         new_root_old_child->up = tree;
     }
     tree->height -= 1;
-
-    //printf("\nNew root: %s - Right: %s - Left: %s\n", new_root->word, new_root->right->word, new_root->left->word);
-    
+   
     balance(new_root);
 }
 
@@ -89,8 +86,7 @@ void rotacao_dupla_direita(node* tree){
     tree->height -= 1;
     tree_left->height -= 1;
 
-    //printf("\nNew root: %s - Right: %s - Left: %s\n", new_root->word, new_root->right->word, new_root->left->word);
-    
+   
     balance(new_root);
 } 
 
@@ -122,8 +118,7 @@ void rotacao_esquerda(node* tree){
     }
     tree->height -= 1;
 
-    //printf("\nNew root: %s - Right: %s - Left: %s\n", new_root->word, new_root->right->word, new_root->left->word);
-    
+   
     balance(new_root);
 
 }
@@ -168,8 +163,6 @@ void rotacao_dupla_esquerda(node* tree){
     tree->height -= 1;
     tree_right->height -= 1;
 
-    //printf("\nNew root: %s - Right: %s - Left: %s\n", new_root->word, new_root->right->word, new_root->left->word);
-    
     balance(new_root);
 }
 
@@ -186,11 +179,7 @@ void balance(node* tree){
         r_height = tree->right->height;
     }
 
-    //printf("\nTree: %s - Balanco: %d - l_h: %d - r_h: %d\n", tree->word, abs(r_height-l_height), l_height, r_height);
-
-    if(abs(r_height-l_height) > 1){
-        
-        //printf("\nDesbalanceada - Valor: %s - ", tree->word);
+     if(abs(r_height-l_height) > 1){
         
         int tree_h = r_height-l_height;
         int child_h = 0;
@@ -211,10 +200,8 @@ void balance(node* tree){
             child_h = r_child_height - l_child_height;
 
             if(child_h > 0){
-                //printf("Rotacao: Esquerda");
                 rotacao_esquerda(tree);
             }else{
-                //printf("Rotacao: Dupla Esquerda");
                 rotacao_dupla_esquerda(tree);
             }
 
@@ -231,10 +218,8 @@ void balance(node* tree){
             child_h = r_child_height - l_child_height;
 
             if(child_h > 0){
-                //printf("Rotacao: Dupla Direita");
                 rotacao_dupla_direita(tree);
             }else{
-                //printf("Rotacao: Direita");
                 rotacao_direita(tree);
             }
 
@@ -287,7 +272,6 @@ void insert(node* root, char* word){
             r->count = 1;
             root->right = r;
 
-            //printf("\nNovo Balanco direita: %s\n", r->word);
             balance(root);
         }
 
@@ -304,7 +288,6 @@ void insert(node* root, char* word){
             l->count = 1;
             root->left = l;
 
-            //printf("\nNovo Balanco esquerda: %s\n", l->word);
             balance(root);
         }
 
@@ -376,7 +359,6 @@ int find(node* tree, char* c){
         int comp = strcmp(c, tree->word);
 
         if(comp==0){
-            //printf("\nrepetida %s\n", c);
             tree->count+=1;
             return 1;
         }else if(comp < 0){
@@ -413,21 +395,5 @@ int main(){
     print_height(root, 0);
 
     return 0;
-
-    /*int arr[] = {94, 33, 50, 76, 96, 67, 56, 65, 83, 34};
-    root = (node*) calloc(1, sizeof(node));
-
-    for(int i =0;i<10;i++){
-        insert(root,arr[i]);
-    }
-
-    print_height(root,1);
-
-    if(find(root, 23233)){
-        printf("show pa!");
-    }else{
-        printf("show pei!");
-    }*/
-
 
 }
